@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextPool<DataContext>(options =>
     {
-        string c = "server = MU-LTP-0017 ; DataBase=Cach ; user=sa ; password ='Qwerty@1234'";
+        string c = "Data Source=MU-LTP-0017;Initial Catalog=Cach;Persist Security Info=false;User ID=sa;Password=Qwerty@1234;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;";
         options.UseSqlServer(c);
     });
 builder.Services.AddScoped<IProductService, ProductService>();

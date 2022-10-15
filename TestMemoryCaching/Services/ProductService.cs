@@ -1,5 +1,9 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+﻿
+
+using Microsoft.Extensions.Caching.Memory;
+using System.Data.Entity;
 using TestMemoryCaching.Entities;
+using TestMemoryCaching.Repositories;
 
 namespace TestMemoryCaching.Services
 {
@@ -13,7 +17,7 @@ namespace TestMemoryCaching.Services
         }
         public async Task<List<Product>> GetAll(CancellationToken cancellation)
         {
-           return await _context.Products.OrderBy(x=>x.Name).ToListAsync(cancellation);
+           return await _context.Product.OrderBy(x=>x.Name).ToListAsync(cancellation);
         }
     }
 }
