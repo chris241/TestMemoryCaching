@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TestMemoryCaching.Repositories;
 using TestMemoryCaching.Services;
 
