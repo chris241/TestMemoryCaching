@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using TestMemoryCaching.Repositories;
 using TestMemoryCaching.Services;
 
@@ -15,9 +16,11 @@ builder.Services.AddDbContextPool<DataContext>(options =>
         string c = "Data Source=MU-LTP-0017;Initial Catalog=Cach;Persist Security Info=false;User ID=sa;Password=Qwerty@1234;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;";
         options.UseSqlServer(c);
     });
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductService, CachedProductService>();
+
 builder.Services.AddMemoryCache();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.Decorate<IProductService, CachedProductService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

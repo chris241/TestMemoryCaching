@@ -1,7 +1,7 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using System.Data.Entity;
 using TestMemoryCaching.Entities;
 using TestMemoryCaching.Repositories;
 
@@ -11,9 +11,10 @@ namespace TestMemoryCaching.Services
     {
         private readonly DataContext _context;
         private readonly IMemoryCache _memoryCache;
-        public ProductService()
+        public ProductService(DataContext context, IMemoryCache memoryCache)
         {
-
+            _context = context;
+            _memoryCache = memoryCache;
         }
         public async Task<List<Product>> GetAll(CancellationToken cancellation)
         {
